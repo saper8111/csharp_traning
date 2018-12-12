@@ -57,7 +57,12 @@ namespace WebAddressbookTests
             contact.Work = "fgfgfgfg";
             contact.Fax = "fgfgfgg";
             contact.Email = "fgghhghgh";
+            contact.Bday = "1";
+            contact.Bmonth = "April";
             contact.Byear = "1900";
+            contact.Aday = "2";
+            contact.Amonth = "November";
+
             contact.Ayear = "1111";
 
         FillContactForm(contact);
@@ -104,16 +109,16 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("email")).Clear();
             driver.FindElement(By.Name("email")).SendKeys(contact.Email);
             driver.FindElement(By.Name("bday")).Click();
-            new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText("9");
+            new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText(contact.Bday);
             driver.FindElement(By.XPath("//option[@value='9']")).Click();
             driver.FindElement(By.Name("bmonth")).Click();
-            new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText("January");
+            new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText(contact.Bmonth);
             driver.FindElement(By.XPath("//option[@value='January']")).Click();
             driver.FindElement(By.Name("byear")).Clear();
             driver.FindElement(By.Name("byear")).SendKeys(contact.Byear);
-            new SelectElement(driver.FindElement(By.Name("aday"))).SelectByText("17");
+            new SelectElement(driver.FindElement(By.Name("aday"))).SelectByText(contact.Aday);
             driver.FindElement(By.XPath("(//option[@value='17'])[2]")).Click();
-            new SelectElement(driver.FindElement(By.Name("amonth"))).SelectByText("November");
+            new SelectElement(driver.FindElement(By.Name("amonth"))).SelectByText(contact.Amonth);
             driver.FindElement(By.XPath("(//option[@value='November'])[2]")).Click();
             driver.FindElement(By.Name("ayear")).Clear();
             driver.FindElement(By.Name("ayear")).SendKeys(contact.Ayear);

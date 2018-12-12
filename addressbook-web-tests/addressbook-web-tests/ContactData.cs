@@ -18,22 +18,23 @@ namespace WebAddressbookTests
         private string work = "";
         private string fax = "";
         private string email = "";
+        private string bday = "";
+        private string bmonth = "";
         private string byear = "";
+        private string aday = "";
+        private string amonth = "";
         private string ayear = "";
-        private ContactData contact;
+        
+        
 
         public ContactData(string firstname)
         {
             this.firstname = firstname;
         }
 
-        public ContactData(ContactData contact)
-        {
-            this.contact = contact;
-        }
-
+       
         public string Firstname
-        {
+           {
             get
             {
                 return firstname;
@@ -43,7 +44,7 @@ namespace WebAddressbookTests
                 firstname = value;
             }
         }
-
+        
         public string Middlename
         {
             get
@@ -152,6 +153,30 @@ namespace WebAddressbookTests
             }
         }
 
+        public string Bday
+        {
+            get
+            {
+                return bday;
+            }
+            set
+            {
+                bday = value;
+            }
+        }
+
+        public string Bmonth
+        {
+            get
+            {
+                return bmonth;
+            }
+            set
+            {
+                bmonth = value;
+            }
+        }
+
         public string Byear
         {
             get
@@ -161,6 +186,30 @@ namespace WebAddressbookTests
             set
             {
                 byear = value;
+            }
+        }
+
+        public string Aday
+        {
+            get
+            {
+                return aday;
+            }
+            set
+            {
+                aday = value;
+            }
+        }
+
+        public string Amonth
+        {
+            get
+            {
+                return amonth;
+            }
+            set
+            {
+                amonth = value;
             }
         }
 
