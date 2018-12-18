@@ -14,9 +14,9 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            OpenHomePage();
-            Login(new AccountData("admin", "secret"));
-            GoToGroupsPage();
+            navigationHelper.OpenHomePage();
+            loginHelper.Login(new AccountData("admin", "secret"));
+            navigationHelper.GoToGroupsPage();
             InitGroupCreation();
             GroupData group = new GroupData("aaa");
             group.Header = "sss";

@@ -16,12 +16,21 @@ namespace WebAddressbookTests
         private StringBuilder verificationErrors;
         protected string baseURL;
 
+        protected LoginHelper loginHelper;
+        protected NavigationHelper navigationHelper;
+
         [SetUp]
         public void SetupTest()
         {
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook";
             verificationErrors = new StringBuilder();
+
+            loginHelper = new LoginHelper(driver);
+
+            navigationHelper = new NavigationHelper(driver);
+
+
         }
 
         [TearDown]
@@ -36,25 +45,6 @@ namespace WebAddressbookTests
                 // Ignore errors if unable to close the browser
             }
             Assert.AreEqual("", verificationErrors.ToString());
-        }
-
-        protected void OpenHomePage()
-        {
-            driver.Navigate().GoToUrl("http://localhost/addressbook");
-        }
-
-        protected void Login(AccountData account)
-        {
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(account.Username);
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-        }
-
-        protected void GoToGroupsPage()
-        {
-            driver.FindElement(By.LinkText("groups")).Click();
         }
 
         protected void InitGroupCreation()
