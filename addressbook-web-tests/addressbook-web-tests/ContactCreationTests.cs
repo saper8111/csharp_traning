@@ -14,7 +14,7 @@ namespace WebAddressbookTests
         {
             navigationHelper.OpenHomePage();
             loginHelper.Login(new AccountData("admin", "secret"));
-            InitContactCreation();
+            contactHelper.InitContactCreation();
             ContactData contact = new ContactData("789");
             contact.Middlename = "433";
             contact.Lastname = "456";
@@ -31,10 +31,10 @@ namespace WebAddressbookTests
             contact.Aday = "2";
             contact.Amonth = "November";
             contact.Ayear = "1111";
-            FillContactForm(contact);
-            SubmitContactCreation();
-            ReturnToContactPage();
-            Logout();
+            contactHelper.FillContactForm(contact);
+            contactHelper.SubmitContactCreation();
+            contactHelper.ReturnToContactPage();
+            contactHelper.Logout();
         }
 
     }
