@@ -17,9 +17,9 @@ namespace WebAddressbookTests
             navigationHelper.OpenHomePage();
             loginHelper.Login(new AccountData("admin", "secret"));
             navigationHelper.GoToGroupsPage();
-            SelectGroup(1);
-            RemoveGroup();
-            ReturnToGroupsPage();
+            groupHelper.SelectGroup(1);
+            groupHelper.RemoveGroup();
+            groupHelper.ReturnToGroupsPage();
         }
 
     }
