@@ -13,7 +13,7 @@ namespace WebAddressbookTests
     {
 
         public GroupHelper(IWebDriver driver) 
-            : base(driver)
+           : base(driver)
         {
         }
 
