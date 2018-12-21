@@ -12,9 +12,9 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTests()
         {
-            app.NavigationHelper.OpenHomePage();
+            app.Navigation.OpenHomePage();
             app.Auth.Login(new AccountData("admin", "secret"));
-            app.ContactHelper.InitContactCreation();
+            app.Contact.InitContactCreation();
             ContactData contact = new ContactData("789");
             contact.Middlename = "433";
             contact.Lastname = "456";
@@ -31,10 +31,10 @@ namespace WebAddressbookTests
             contact.Aday = "2";
             contact.Amonth = "November";
             contact.Ayear = "1111";
-            app.ContactHelper.FillContactForm(contact);
-            app.ContactHelper.SubmitContactCreation();
-            app.ContactHelper.ReturnToContactPage();
-            app.ContactHelper.Logout();
+            app.Contact.FillContactForm(contact);
+            app.Contact.SubmitContactCreation();
+            app.Contact.ReturnToContactPage();
+            app.Contact.Logout();
         }
 
     }

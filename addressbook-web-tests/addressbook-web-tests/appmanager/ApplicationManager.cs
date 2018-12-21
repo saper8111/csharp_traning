@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    public class ApplicationManager
+   public class ApplicationManager
     {
         protected IWebDriver driver;
         protected string baseURL;
@@ -22,10 +23,14 @@ namespace WebAddressbookTests
 
         public ApplicationManager()
         {
-            loginHelper = new LoginHelper(driver);
-            navigationHelper = new NavigationHelper(driver);
-            groupHelper = new GroupHelper(driver);
-            contactHelper = new ContactHelper(driver);
+
+        driver = new FirefoxDriver();
+        baseURL = "http://localhost/addressbook";
+
+        loginHelper = new LoginHelper(driver);
+        navigationHelper = new NavigationHelper(driver);
+        groupHelper = new GroupHelper(driver);
+        contactHelper = new ContactHelper(driver);
         }
 
         public void Stop()
@@ -48,7 +53,7 @@ namespace WebAddressbookTests
             }
         }
 
-        public NavigationHelper NavigationHelper
+        public NavigationHelper Navigation
         {
             get
             {
@@ -56,7 +61,7 @@ namespace WebAddressbookTests
             }
         }
 
-        public GroupHelper GroupHelper
+        public GroupHelper  Groups
         {
             get
             {
@@ -64,12 +69,13 @@ namespace WebAddressbookTests
             }
         }
 
-        public ContactHelper ContactHelper
+        public ContactHelper Contact
         {
             get
             {
                 return contactHelper;
             }
         }
+        
     }
 }
