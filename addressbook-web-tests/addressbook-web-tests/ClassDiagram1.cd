@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="WebAddressbookTests.TestBase">
-    <Position X="1.5" Y="1.25" Width="1.5" />
+    <Position X="0.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAABAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>tests\TestBase.cs</FileName>
@@ -97,7 +97,39 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebAddressbookTests.ApplicationManager" Collapsed="true">
-    <Position X="3.75" Y="1.5" Width="1.5" />
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <AssociationLine Name="loginHelper" Type="WebAddressbookTests.LoginHelper" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="1.875" />
+        <Point X="4.456" Y="1.875" />
+        <Point X="4.456" Y="1.875" />
+        <Point X="6.5" Y="1.875" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="navigationHelper" Type="WebAddressbookTests.NavigationHelper" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="1.875" />
+        <Point X="4.675" Y="1.875" />
+        <Point X="4.675" Y="2.737" />
+        <Point X="6.5" Y="2.737" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="groupHelper" Type="WebAddressbookTests.GroupHelper" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="1.875" />
+        <Point X="4.664" Y="1.875" />
+        <Point X="4.664" Y="3.846" />
+        <Point X="6.5" Y="3.846" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="contactHelper" Type="WebAddressbookTests.ContactHelper" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="1.875" />
+        <Point X="4.692" Y="1.875" />
+        <Point X="4.692" Y="0.846" />
+        <Point X="6.5" Y="0.846" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAACAAAAASAAAAAAAAAIBCAABEAQCA=</HashCode>
       <FileName>appmanager\ApplicationManager.cs</FileName>

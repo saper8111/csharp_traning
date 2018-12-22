@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using OpenQA.Selenium;
+
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
@@ -27,10 +27,19 @@ namespace WebAddressbookTests
         driver = new FirefoxDriver();
         baseURL = "http://localhost/addressbook";
 
-        loginHelper = new LoginHelper(driver);
-        navigationHelper = new NavigationHelper(driver);
-        groupHelper = new GroupHelper(driver);
-        contactHelper = new ContactHelper(driver);
+        loginHelper = new LoginHelper(this);
+        navigationHelper = new NavigationHelper(this);
+        groupHelper = new GroupHelper(this);
+        contactHelper = new ContactHelper(this);
+        }
+
+
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
         }
 
         public void Stop()
@@ -76,6 +85,6 @@ namespace WebAddressbookTests
                 return contactHelper;
             }
         }
-        
+
     }
 }

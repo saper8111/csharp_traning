@@ -12,27 +12,41 @@ namespace WebAddressbookTests
     public class ContactHelper : HelperBase
     {
 
-        public ContactHelper(IWebDriver driver)
-            : base(driver)
+        public ContactHelper(ApplicationManager manager)
+            : base(manager)
         {
         }
 
-        public void ReturnToContactPage()
+        public ContactHelper Create(ContactData contact)
+        {
+            manager.Navigation.OpenHomePage();
+            InitContactCreation();
+            FillContactForm(contact);
+            SubmitContactCreation();
+            ReturnToContactPage();
+            Logout();
+            return this;
+        }
+
+        public ContactHelper ReturnToContactPage()
         {
             driver.FindElement(By.LinkText("home page")).Click();
+            return this;
         }
 
-        public void SubmitContactCreation()
+        public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            return this;
         }
 
-        public void InitContactCreation()
+        public ContactHelper InitContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
 
-        public void FillContactForm(ContactData contact)
+        public ContactHelper FillContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
@@ -68,11 +82,13 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("(//option[@value='November'])[2]")).Click();
             driver.FindElement(By.Name("ayear")).Clear();
             driver.FindElement(By.Name("ayear")).SendKeys(contact.Ayear);
+            return this;
         }
 
-        public void Logout()
+        public ContactHelper Logout()
         {
             driver.FindElement(By.LinkText("Logout")).Click();
+            return this;
         }
     }
 }
