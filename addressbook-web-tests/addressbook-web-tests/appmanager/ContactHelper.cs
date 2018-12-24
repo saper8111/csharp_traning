@@ -11,10 +11,34 @@ namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
     {
+        
 
         public ContactHelper(ApplicationManager manager)
             : base(manager)
         {
+        }
+
+        public ContactHelper Remove(int v)
+        {
+            manager.Navigation.OpenHomePage();
+            SelectContact(1);
+            RemoveContact();
+            return this;
+
+        }
+
+
+
+        public ContactHelper RemoveContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
         }
 
         public ContactHelper Create(ContactData contact)
@@ -85,10 +109,13 @@ namespace WebAddressbookTests
             return this;
         }
 
+
+
         public ContactHelper Logout()
         {
             driver.FindElement(By.LinkText("Logout")).Click();
             return this;
         }
+
     }
 }

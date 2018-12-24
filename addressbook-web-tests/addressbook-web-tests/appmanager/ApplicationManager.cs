@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
@@ -15,6 +14,7 @@ namespace WebAddressbookTests
     {
         protected IWebDriver driver;
         protected string baseURL;
+        protected bool acceptNextAlert = true;
 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
@@ -85,6 +85,6 @@ namespace WebAddressbookTests
                 return contactHelper;
             }
         }
-
+        
     }
 }

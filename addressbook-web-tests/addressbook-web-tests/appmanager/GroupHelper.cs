@@ -17,15 +17,27 @@ namespace WebAddressbookTests
         {
         }
 
+
         public GroupHelper Create(GroupData group)
         {
-           manager.Navigation.GoToGroupsPage();
+            manager.Navigation.GoToGroupsPage();
             InitGroupCreation();
             FillGroupForm(group);
             SubmitGroupCreation();
             ReturnToGroupsPage();
             Logout();
             return this;
+        }
+
+
+        public GroupHelper Remove(int v)
+        {
+            manager.Navigation.GoToGroupsPage();
+            SelectGroup(1);
+            RemoveGroup();
+            ReturnToGroupsPage();
+            return this;
+
         }
 
         public GroupHelper InitGroupCreation()
@@ -74,5 +86,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("delete")).Click();
             return this;
         }
+
+        
     }
 }
