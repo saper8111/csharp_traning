@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -11,34 +14,11 @@ namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
     {
-        
+        private bool acceptNextAlert;
 
         public ContactHelper(ApplicationManager manager)
             : base(manager)
         {
-        }
-
-        public ContactHelper Remove(int v)
-        {
-            manager.Navigation.OpenHomePage();
-            SelectContact(1);
-            RemoveContact();
-            return this;
-
-        }
-
-
-
-        public ContactHelper RemoveContact()
-        {
-            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            return this;
-        }
-
-        public ContactHelper SelectContact(int index)
-        {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-            return this;
         }
 
         public ContactHelper Create(ContactData contact)
@@ -51,6 +31,56 @@ namespace WebAddressbookTests
             Logout();
             return this;
         }
+
+        public ContactHelper Modify(int v, ContactData newData)
+        {
+            manager.Navigation.OpenHomePage();
+            SelectContact(v);
+            InitContactModification();
+            FillContactForm(newData);
+            SubmitContactModification();
+            ReturnToContactPage();
+            return this;
+        }
+
+        public ContactHelper Remove(int v)
+        {
+            manager.Navigation.OpenHomePage();
+            SelectContact(v);
+            RemoveContact();
+            return this;
+
+        }
+
+        public ContactHelper SubmitContactModification()
+        {
+            driver.FindElement(By.XPath("//div[4]/form[1]/input[1]")).Click();
+            return this;
+        }
+
+        public ContactHelper InitContactModification()
+        {
+            driver.FindElement(By.XPath("//tr[2]//td[8]")).Click();
+
+            return this;
+        }
+
+        public ContactHelper RemoveContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            Thread.Sleep(1000);
+            driver.SwitchTo().Alert().Accept();
+
+
+            return this;
+        }
+
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
+        }
+
 
         public ContactHelper ReturnToContactPage()
         {
@@ -117,5 +147,27 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public string CloseAlertAndGetItsText()
+        {
+            try
+            {
+
+                IAlert alert = driver.SwitchTo().Alert();
+                string alertText = alert.Text;
+                if (acceptNextAlert)
+                {
+                    alert.Accept();
+                }
+                else
+                {
+                    alert.Dismiss();
+                }
+                return alertText;
+            }
+            finally
+            {
+                acceptNextAlert = true;
+            }
+        }
     }
 }
