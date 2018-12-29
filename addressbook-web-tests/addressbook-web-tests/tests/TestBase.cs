@@ -25,8 +25,6 @@ namespace WebAddressbookTests
         [TearDown]
         public void TeardownTest()
         {
-
-
             app.Stop();
         }
 

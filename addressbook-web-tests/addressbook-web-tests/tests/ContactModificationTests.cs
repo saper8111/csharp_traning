@@ -16,15 +16,15 @@ namespace WebAddressbookTests
         public void ContactModificationTest()
         {
             ContactData newData = new ContactData("900");
-            newData.Middlename = "222";
-            newData.Lastname = "333";
-            newData.Nickname = "444";
-            newData.Address = "ghhjhhnbm";
-            newData.Home = "ghghghgh";
-            newData.Mobile = "ghghghf";
-            newData.Work = "fgfgfgfg";
-            newData.Fax = "fgfgfgg";
-            newData.Email = "fgghhghgh";
+            newData.Middlename = null;
+            newData.Lastname = null;
+            newData.Nickname = null;
+            newData.Address = null;
+            newData.Home = null;
+            newData.Mobile = null;
+            newData.Work = null;
+            newData.Fax = null;
+            newData.Email = null;
             newData.Bday = "1";
             newData.Bmonth = "April";
             newData.Byear = "1900";
