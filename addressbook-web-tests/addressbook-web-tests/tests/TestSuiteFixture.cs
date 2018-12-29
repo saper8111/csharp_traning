@@ -12,23 +12,14 @@ namespace WebAddressbookTests
 
     public class TestSuiteFixture
     {
-        public static ApplicationManager app;
 
         [SetUp]
 
         public void InitApplicationManager()
         {
-            app = new ApplicationManager();
+            ApplicationManager app = ApplicationManager.GetInstance();
             app.Navigation.OpenHomePage();
             app.Auth.Login(new AccountData("admin", "secret"));
-        }
-
-        [TearDown]
-
-        public void StopApplicationManager()
-        {
-            app.Stop();
-
         }
     }
 
