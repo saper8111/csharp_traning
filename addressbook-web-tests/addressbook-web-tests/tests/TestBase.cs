@@ -11,23 +11,12 @@ namespace WebAddressbookTests
     {
         protected ApplicationManager app;
 
-   
-
         [SetUp]
+
         public void SetupTest()
         {
-            app = new ApplicationManager();
-            app.Navigation.OpenHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-
+            app = TestSuiteFixture.app;
         }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            app.Stop();
-        }
-
     }
 
 }
