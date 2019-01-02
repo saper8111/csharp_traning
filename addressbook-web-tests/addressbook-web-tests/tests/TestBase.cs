@@ -15,12 +15,8 @@ namespace WebAddressbookTests
 
         public void SetupTest()
         {
-            app = ApplicationManager.GetInstance();
-
-
+            app = TestSuiteFixture.app;
         }
-
-
     }
 
 }
