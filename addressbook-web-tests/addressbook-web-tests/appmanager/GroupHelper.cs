@@ -37,6 +37,7 @@ namespace WebAddressbookTests
             FillGroupForm(newData);
             SubmitGroupModification();
             ReturnToGroupsPage();
+            Logout();
             return this;
         }
 
@@ -58,6 +59,7 @@ namespace WebAddressbookTests
             SelectGroup(v);
             RemoveGroup();
             ReturnToGroupsPage();
+            Logout();
             return this;
 
         }

@@ -39,6 +39,7 @@ namespace WebAddressbookTests
             FillContactForm(newData);
             SubmitContactModification();
             ReturnToContactPage();
+            Logout();
             return this;
         }
 
@@ -48,6 +49,7 @@ namespace WebAddressbookTests
             SelectContact(v);
             RemoveContact();
             ReturnToContactPage();
+            Logout();
             return this;
 
         }
