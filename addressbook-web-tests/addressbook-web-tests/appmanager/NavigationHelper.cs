@@ -24,6 +24,11 @@ namespace WebAddressbookTests
 
         public void GoToGroupsPage()
         {
+            if (driver.Url == "http://localhost/addressbook/group.php" 
+                && IsElementPresent(By.Name("new")))
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("groups")).Click();
         }
     }
