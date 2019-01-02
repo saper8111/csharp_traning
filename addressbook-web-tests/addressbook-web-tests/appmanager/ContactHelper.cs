@@ -14,7 +14,6 @@ namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
     {
-        private bool acceptNextAlert;
 
         public ContactHelper(ApplicationManager manager)
             : base(manager)
@@ -48,6 +47,7 @@ namespace WebAddressbookTests
             manager.Navigation.OpenHomePage();
             SelectContact(v);
             RemoveContact();
+            ReturnToContactPage();
             return this;
 
         }
@@ -60,7 +60,7 @@ namespace WebAddressbookTests
 
         public ContactHelper InitContactModification()
         {
-            driver.FindElement(By.XPath("//tr[2]//td[8]")).Click();
+            driver.FindElement(By.XPath("//img[@title='Edit']")).Click();
 
             return this;
         }
@@ -84,7 +84,7 @@ namespace WebAddressbookTests
 
         public ContactHelper ReturnToContactPage()
         {
-            driver.FindElement(By.LinkText("home page")).Click();
+            driver.FindElement(By.LinkText("home")).Click();
             return this;
         }
 
@@ -136,27 +136,6 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public string CloseAlertAndGetItsText()
-        {
-            try
-            {
-
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
-        }
+        
     }
 }
