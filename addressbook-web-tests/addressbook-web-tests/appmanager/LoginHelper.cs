@@ -18,9 +18,41 @@ namespace WebAddressbookTests
         } 
         public void Login(AccountData account)
         {
+            if (IsloggedIn())
+            {
+                if (IsloggedIn(account))
+                {
+                    return;
+                }
+
+                logout();
+            }
             Type(By.Name("user"), account.Username);
             Type(By.Name("pass"), account.Password);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         }
+
+
+        public void logout()
+        {
+            if (IsloggedIn())
+            {
+                driver.FindElement(By.LinkText("Logout")).Click();
+            }
+           
+        }
+
+        public bool IsloggedIn()
+        {
+            return IsElementPresent(By.Name("logout"));
+        }
+
+        public bool IsloggedIn(AccountData account)
+        {
+            return IsloggedIn()
+                && driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text 
+                == "(" + account.Username + ")";
+        }
+
     }
 }
