@@ -15,6 +15,7 @@ namespace WebAddressbookTests
 
         public void ContactModificationTest()
         {
+          
             ContactData newData = new ContactData("900");
             newData.Middlename = null;
             newData.Lastname = null;

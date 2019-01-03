@@ -32,10 +32,19 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int v, GroupData newData)
         {
             manager.Navigation.GoToGroupsPage();
+
+            if (driver.Url == "http://localhost/addressbook/group.php"
+                && IsElementPresent(By.Name("selected[]")))
+            {
             SelectGroup(v);
             InitGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();
+            ReturnToGroupsPage();
+            }
+            InitGroupCreation();
+            FillGroupForm(newData);
+            SubmitGroupCreation();
             ReturnToGroupsPage();
             //Logout();
             return this;
