@@ -16,7 +16,24 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
-            app.Contact.Remove(1);
+            ContactData newContact = new ContactData("200");
+            newContact.Middlename = null;
+            newContact.Lastname = null;
+            newContact.Nickname = null;
+            newContact.Address = null;
+            newContact.Home = null;
+            newContact.Mobile = null;
+            newContact.Work = null;
+            newContact.Fax = null;
+            newContact.Email = null;
+            newContact.Bday = "1";
+            newContact.Bmonth = "April";
+            newContact.Byear = "1900";
+            newContact.Aday = "2";
+            newContact.Amonth = "November";
+            newContact.Ayear = "1111";
+
+            app.Contact.Remove(1, newContact);
         }
 
     }

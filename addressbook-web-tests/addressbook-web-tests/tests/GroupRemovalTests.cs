@@ -12,10 +12,10 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
-            GroupData newData = new GroupData("qwe");
-            newData.Header = "qwerty";
-            newData.Footer = "qwerty3076910";
-            app.Groups.Remove(1, newData);
+            GroupData newRemoveData = new GroupData("qwe");
+            newRemoveData.Header = "qwerty";
+            newRemoveData.Footer = "qwerty3076910";
+            app.Groups.Remove(1, newRemoveData);
         }
 
     }

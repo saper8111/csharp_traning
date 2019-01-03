@@ -15,24 +15,23 @@ namespace WebAddressbookTests
 
         public void ContactModificationTest()
         {
-          
-            ContactData newData = new ContactData("900");
-            newData.Middlename = null;
-            newData.Lastname = null;
-            newData.Nickname = null;
-            newData.Address = null;
-            newData.Home = null;
-            newData.Mobile = null;
-            newData.Work = null;
-            newData.Fax = null;
-            newData.Email = null;
-            newData.Bday = "1";
-            newData.Bmonth = "April";
-            newData.Byear = "1900";
-            newData.Aday = "2";
-            newData.Amonth = "November";
-            newData.Ayear = "1111";
-            app.Contact.Modify(1, newData);
+            ContactData modifyData = new ContactData("900");
+            modifyData.Middlename = "111111111";
+            modifyData.Lastname = null;
+            modifyData.Nickname = null;
+            modifyData.Address = null;
+            modifyData.Home = null;
+            modifyData.Mobile = null;
+            modifyData.Work = null;
+            modifyData.Fax = null;
+            modifyData.Email = null;
+            modifyData.Bday = "1";
+            modifyData.Bmonth = "April";
+            modifyData.Byear = "1900";
+            modifyData.Aday = "2";
+            modifyData.Amonth = "November";
+            modifyData.Ayear = "1111";
+            app.Contact.Modify(1, modifyData);
         }
     }
 }

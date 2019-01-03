@@ -29,7 +29,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Modify(int v, GroupData newData)
+        public GroupHelper Modify(int v, GroupData newModifyData)
         {
             manager.Navigation.GoToGroupsPage();
 
@@ -38,14 +38,14 @@ namespace WebAddressbookTests
 
             {
             InitGroupCreation();
-            FillGroupForm(newData);
+            FillGroupForm(newModifyData);
             SubmitGroupCreation();
             ReturnToGroupsPage();
             }
 
             SelectGroup(v);
             InitGroupModification();
-            FillGroupForm(newData);
+            FillGroupForm(newModifyData);
             SubmitGroupModification();
             ReturnToGroupsPage();
             //Logout();
@@ -64,7 +64,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Remove(int v, GroupData newData)
+        public GroupHelper Remove(int v, GroupData newRemoveData)
         {
             manager.Navigation.GoToGroupsPage();
 
@@ -73,7 +73,7 @@ namespace WebAddressbookTests
             {
 
             InitGroupCreation();
-            FillGroupForm(newData);
+            FillGroupForm(newRemoveData);
             SubmitGroupCreation();
             ReturnToGroupsPage();
             }
@@ -81,6 +81,7 @@ namespace WebAddressbookTests
             SelectGroup(v);
             RemoveGroup();
             ReturnToGroupsPage();
+            Logout();
             return this;
 
 

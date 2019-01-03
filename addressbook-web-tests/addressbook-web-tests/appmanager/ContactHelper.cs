@@ -31,25 +31,41 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Modify(int v, ContactData newData)
+        public ContactHelper Modify(int v, ContactData modifyData)
         {
             manager.Navigation.OpenHomePage();
-            SelectContact(v);
-            InitContactModification();
-            FillContactForm(newData);
-            SubmitContactModification();
-            ReturnToContactPage();
+            if(!IsElementPresent(By.XPath("//img[@title='Details']"))
+                && !IsElementPresent(By.XPath("//img[@title='Edit']")))
+            {
+                InitContactCreation();
+                FillContactForm(modifyData);
+                SubmitContactCreation();
+                ReturnToContactPage();
+            }
+                SelectContact(v);
+                InitContactModification();
+                FillContactForm(modifyData);
+                SubmitContactModification();
+                ReturnToContactPage();
             //Logout();
             return this;
         }
 
-        public ContactHelper Remove(int v)
+        public ContactHelper Remove(int v, ContactData newContact)
         {
             manager.Navigation.OpenHomePage();
-            SelectContact(v);
-            RemoveContact();
-            ReturnToContactPage();
-            //Logout();
+            if (!IsElementPresent(By.XPath("//img[@title='Details']")) 
+                && !IsElementPresent(By.XPath("//img[@title='Edit']")))
+            {
+                InitContactCreation();
+                FillContactForm(newContact);
+                SubmitContactCreation();
+                ReturnToContactPage();
+            }
+                SelectContact(v);
+                RemoveContact();
+                ReturnToContactPage();
+                //Logout();
             return this;
 
         }
