@@ -34,18 +34,19 @@ namespace WebAddressbookTests
             manager.Navigation.GoToGroupsPage();
 
             if (driver.Url == "http://localhost/addressbook/group.php"
-                && IsElementPresent(By.Name("selected[]")))
+                && !IsElementPresent(By.Name("selected[]")))
+
             {
+            InitGroupCreation();
+            FillGroupForm(newData);
+            SubmitGroupCreation();
+            ReturnToGroupsPage();
+            }
+
             SelectGroup(v);
             InitGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();
-            ReturnToGroupsPage();
-            return this;
-            }
-            InitGroupCreation();
-            FillGroupForm(newData);
-            SubmitGroupCreation();
             ReturnToGroupsPage();
             //Logout();
             return this;
@@ -66,20 +67,23 @@ namespace WebAddressbookTests
         public GroupHelper Remove(int v, GroupData newData)
         {
             manager.Navigation.GoToGroupsPage();
+
             if (driver.Url == "http://localhost/addressbook/group.php"
-                && IsElementPresent(By.Name("selected[]")))
+                && !IsElementPresent(By.Name("selected[]")))
             {
-            SelectGroup(v);
-            RemoveGroup();
-            ReturnToGroupsPage();
-                return this;
-            }
+
             InitGroupCreation();
             FillGroupForm(newData);
             SubmitGroupCreation();
             ReturnToGroupsPage();
+            }
 
+            SelectGroup(v);
+            RemoveGroup();
+            ReturnToGroupsPage();
             return this;
+
+
 
         }
 
