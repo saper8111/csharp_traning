@@ -11,12 +11,17 @@ namespace WebAddressbookTests
         private string name;
         private string header = "";
         private string footer = "";
+        private GroupData group;
 
         public GroupData (string name)
         {
             this.name = name;
         }
 
+        public GroupData(GroupData group)
+        {
+            this.group = group;
+        }
 
         public string Name
         {

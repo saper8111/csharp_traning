@@ -41,6 +41,7 @@ namespace WebAddressbookTests
             FillGroupForm(newData);
             SubmitGroupModification();
             ReturnToGroupsPage();
+            return this;
             }
             InitGroupCreation();
             FillGroupForm(newData);
@@ -62,13 +63,22 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Remove(int v)
+        public GroupHelper Remove(int v, GroupData newData)
         {
             manager.Navigation.GoToGroupsPage();
+            if (driver.Url == "http://localhost/addressbook/group.php"
+                && IsElementPresent(By.Name("selected[]")))
+            {
             SelectGroup(v);
             RemoveGroup();
             ReturnToGroupsPage();
-            Logout();
+                return this;
+            }
+            InitGroupCreation();
+            FillGroupForm(newData);
+            SubmitGroupCreation();
+            ReturnToGroupsPage();
+
             return this;
 
         }
