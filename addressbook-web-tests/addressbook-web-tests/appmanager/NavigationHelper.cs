@@ -19,6 +19,11 @@ namespace WebAddressbookTests
 
         public void OpenHomePage()
         {
+            if (driver.Url == "http://localhost/addressbook" 
+                && IsElementPresent(By.XPath("//img[@title='Details']")) && IsElementPresent(By.XPath("//img[@title='Edit']")))
+            {
+                return;
+            }
             driver.Navigate().GoToUrl("http://localhost/addressbook");
         }
 
