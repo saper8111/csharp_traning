@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace WebAddressbookTests
 {
@@ -28,9 +29,15 @@ namespace WebAddressbookTests
             contact.Aday = "2";
             contact.Amonth = "November";
             contact.Ayear = "1111";
+
+            List<ContactData> oldContact = app.Contact.GetContactList();
+
             app.Contact.Create(contact);
 
-             
+            List<ContactData> newContact = app.Contact.GetContactList();
+            Assert.AreEqual(oldContact.Count + 1, newContact.Count);
+
+
         }
 
 
@@ -54,7 +61,13 @@ namespace WebAddressbookTests
             contact.Aday = "2";
             contact.Amonth = "November";
             contact.Ayear = "1111";
+
+            List<ContactData> oldContact = app.Contact.GetContactList();
+
             app.Contact.Create(contact);
+
+            List<ContactData> newContact = app.Contact.GetContactList();
+            Assert.AreEqual(oldContact.Count + 1, newContact.Count);
         }
 
     }

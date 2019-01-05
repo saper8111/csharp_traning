@@ -51,6 +51,18 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigation.OpenHomePage();
+            ICollection<IWebElement>elements = driver.FindElements(By.XPath("//td[1]/input[1]"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text));
+            }
+            return contacts;
+        }
+
         public ContactHelper Remove(int v, ContactData newContact)
         {
             manager.Navigation.OpenHomePage();
