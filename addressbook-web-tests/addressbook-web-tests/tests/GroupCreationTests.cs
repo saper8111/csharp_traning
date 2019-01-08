@@ -42,6 +42,7 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
 
+
         /*[Test]
         public void BadNameGroupCreationTest()
         {

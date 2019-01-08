@@ -46,16 +46,6 @@ namespace WebAddressbookTests
         {
             manager.Navigation.GoToGroupsPage();
 
-            if (driver.Url == "http://localhost/addressbook/group.php"
-                && !IsElementPresent(By.Name("selected[]")))
-
-            {
-            InitGroupCreation();
-            FillGroupForm(newModifyData);
-            SubmitGroupCreation();
-            ReturnToGroupsPage();
-            }
-
             SelectGroup(v);
             InitGroupModification();
             FillGroupForm(newModifyData);
@@ -80,17 +70,6 @@ namespace WebAddressbookTests
         public GroupHelper Remove(int v, GroupData newRemoveData)
         {
             manager.Navigation.GoToGroupsPage();
-
-            if (driver.Url == "http://localhost/addressbook/group.php"
-                && !IsElementPresent(By.Name("selected[]")))
-            {
-
-            InitGroupCreation();
-            FillGroupForm(newRemoveData);
-            SubmitGroupCreation();
-            ReturnToGroupsPage();
-            }
-
             SelectGroup(v);
             RemoveGroup();
             ReturnToGroupsPage();

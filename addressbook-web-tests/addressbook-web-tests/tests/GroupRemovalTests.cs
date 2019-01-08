@@ -12,6 +12,7 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
+
             GroupData newRemoveData = new GroupData("qwe");
             newRemoveData.Header = "qwerty";
             newRemoveData.Footer = "qwerty3076910";

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace WebAddressbookTests
 {
@@ -33,15 +26,7 @@ namespace WebAddressbookTests
 
         public ContactHelper Modify(int v, ContactData modifyData)
         {
-            manager.Navigation.OpenHomePage();
-            if(!IsElementPresent(By.XPath("//img[@title='Details']"))
-                && !IsElementPresent(By.XPath("//img[@title='Edit']")))
-            {
-                InitContactCreation();
-                FillContactForm(modifyData);
-                SubmitContactCreation();
-                ReturnToContactPage();
-            }
+                manager.Navigation.OpenHomePage();
                 SelectContact(v);
                 InitContactModification();
                 FillContactForm(modifyData);
@@ -65,15 +50,7 @@ namespace WebAddressbookTests
 
         public ContactHelper Remove(int v, ContactData newContact)
         {
-            manager.Navigation.OpenHomePage();
-            if (!IsElementPresent(By.XPath("//img[@title='Details']")) 
-                && !IsElementPresent(By.XPath("//img[@title='Edit']")))
-            {
-                InitContactCreation();
-                FillContactForm(newContact);
-                SubmitContactCreation();
-                ReturnToContactPage();
-            }
+                manager.Navigation.OpenHomePage();
                 SelectContact(v);
                 RemoveContact();
                 ReturnToContactPage();
@@ -90,7 +67,7 @@ namespace WebAddressbookTests
 
         public ContactHelper InitContactModification()
         {
-            driver.FindElement(By.XPath("//img[@title='Edit']")).Click();
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
 
             return this;
         }
