@@ -33,7 +33,7 @@ namespace WebAddressbookTests
             newContact.Amonth = "November";
             newContact.Ayear = "1111";
 
-            app.Contact.Remove(1, newContact);
+            app.Contact.Remove(7, newContact);
         }
 
     }
