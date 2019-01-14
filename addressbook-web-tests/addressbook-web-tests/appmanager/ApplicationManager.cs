@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Opera;
 
 namespace WebAddressbookTests
 {

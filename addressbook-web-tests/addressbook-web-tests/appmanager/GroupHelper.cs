@@ -17,7 +17,6 @@ namespace WebAddressbookTests
         {
         }
 
-
         public GroupHelper Create(GroupData group)
         {
             manager.Navigation.GoToGroupsPage();
@@ -42,17 +41,27 @@ namespace WebAddressbookTests
             return groups;
         }
 
-        public GroupHelper Modify(int v, GroupData newModifyData)
+        public GroupHelper Modify(int v, GroupData group)
         {
             manager.Navigation.GoToGroupsPage();
+            if (GroupIsNotCreated())
+            {
+                InitGroupCreation();
+                FillGroupForm(group);
+                SubmitGroupCreation();
+                ReturnToGroupsPage();
+
+            }
 
             SelectGroup(v);
             InitGroupModification();
-            FillGroupForm(newModifyData);
+            FillGroupForm(group);
             SubmitGroupModification();
             ReturnToGroupsPage();
-            //Logout();
-            return this;
+            Logout();
+
+            
+                return this;
         }
 
         public GroupHelper SubmitGroupModification()
@@ -67,17 +76,34 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Remove(int v, GroupData newRemoveData)
+        public GroupHelper Remove(int v, GroupData group)
         {
             manager.Navigation.GoToGroupsPage();
-            SelectGroup(v);
-            RemoveGroup();
-            ReturnToGroupsPage();
-            Logout();
+            if (GroupIsNotCreated())
+            {
+                InitGroupCreation();
+                FillGroupForm(group);
+                SubmitGroupCreation();
+                ReturnToGroupsPage();
+
+            }
+            
+                SelectGroup(v);
+                RemoveGroup();
+                ReturnToGroupsPage();
+                Logout();
+
+           
+            
+
+               
             return this;
+        }
 
 
-
+        public bool GroupIsNotCreated()
+        {
+            return !IsElementPresent(By.Name("selected[]"));
         }
 
         public GroupHelper InitGroupCreation()

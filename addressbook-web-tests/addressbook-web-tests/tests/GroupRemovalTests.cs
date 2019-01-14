@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -13,10 +14,21 @@ namespace WebAddressbookTests
         public void GroupRemovalTest()
         {
 
-            GroupData newRemoveData = new GroupData("qwe");
-            newRemoveData.Header = "qwerty";
-            newRemoveData.Footer = "qwerty3076910";
-            app.Groups.Remove(1, newRemoveData);
+            if (app.Groups.GroupIsNotCreated())
+            {
+                Assert.IsFalse(app.Groups.IsElementPresent(By.Name("selected[]")));
+
+            }
+
+            GroupData group = new GroupData("qwerty");
+            group.Header = "qwerty1";
+            group.Footer = "qwerty2";
+            //Assert.IsFalse(app.Groups.IsElementPresent(By.Name("selected[]")));
+            
+            app.Groups.Remove(1, group);
+
+            
+           
         }
 
     }

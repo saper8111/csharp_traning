@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -15,23 +16,28 @@ namespace WebAddressbookTests
 
         public void ContactModificationTest()
         {
-            ContactData modifyData = new ContactData("900");
-            modifyData.Middlename = "111111111";
-            modifyData.Lastname = null;
-            modifyData.Nickname = null;
-            modifyData.Address = null;
-            modifyData.Home = null;
-            modifyData.Mobile = null;
-            modifyData.Work = null;
-            modifyData.Fax = null;
-            modifyData.Email = null;
-            modifyData.Bday = "1";
-            modifyData.Bmonth = "April";
-            modifyData.Byear = "1900";
-            modifyData.Aday = "2";
-            modifyData.Amonth = "November";
-            modifyData.Ayear = "1111";
-            app.Contact.Modify(10, modifyData);
+            if (app.Contact.ContactIsNotCreated())
+            {
+                Assert.IsFalse(app.Contact.IsElementPresent(By.XPath("//td[1]/input[1]")));
+            }
+            
+            ContactData contact = new ContactData("ContactModify");
+            contact.Middlename = "ContactModify";
+            contact.Lastname = null;
+            contact.Nickname = null;
+            contact.Address = null;
+            contact.Home = null;
+            contact.Mobile = null;
+            contact.Work = null;
+            contact.Fax = null;
+            contact.Email = null;
+            contact.Bday = "1";
+            contact.Bmonth = "April";
+            contact.Byear = "1900";
+            contact.Aday = "2";
+            contact.Amonth = "November";
+            contact.Ayear = "1111";
+            app.Contact.Modify(1, contact);
         }
     }
 }

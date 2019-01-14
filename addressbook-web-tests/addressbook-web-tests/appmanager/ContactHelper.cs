@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -24,12 +25,21 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Modify(int v, ContactData modifyData)
+        public ContactHelper Modify(int v, ContactData contact)
         {
                 manager.Navigation.OpenHomePage();
-                SelectContact(v);
+            if (ContactIsNotCreated())
+            {
+                InitContactCreation();
+                FillContactForm(contact);
+                SubmitContactCreation();
+                ReturnToContactPage();
+
+            }
+
+            SelectContact(v);
                 InitContactModification();
-                FillContactForm(modifyData);
+                FillContactForm(contact);
                 SubmitContactModification();
                 ReturnToContactPage();
             //Logout();
@@ -48,15 +58,30 @@ namespace WebAddressbookTests
             return contacts;
         }
 
-        public ContactHelper Remove(int v, ContactData newContact)
+        public ContactHelper Remove(int v, ContactData contact)
         {
                 manager.Navigation.OpenHomePage();
+            if (ContactIsNotCreated())
+            {
+                InitContactCreation();
+                FillContactForm(contact);
+                SubmitContactCreation();
+                ReturnToContactPage();
+
+            }
+            
                 SelectContact(v);
                 RemoveContact();
                 ReturnToContactPage();
                 //Logout();
             return this;
 
+        }
+
+        public bool ContactIsNotCreated()
+        {
+           return !IsElementPresent(By.Name("selected[]"));
+            
         }
 
         public ContactHelper SubmitContactModification()
@@ -67,7 +92,7 @@ namespace WebAddressbookTests
 
         public ContactHelper InitContactModification()
         {
-            driver.FindElement(By.XPath("//a[@href='edit.php?id=178']")).Click();
+            driver.FindElement(By.XPath("//tr[@name='entry']//td[8]")).Click();
 
             return this;
         }
