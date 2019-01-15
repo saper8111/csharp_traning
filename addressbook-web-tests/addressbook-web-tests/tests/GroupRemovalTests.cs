@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
@@ -16,16 +18,15 @@ namespace WebAddressbookTests
 
             if (app.Groups.GroupIsNotCreated())
             {
-                Assert.IsFalse(app.Groups.IsElementPresent(By.Name("selected[]")));
+                Assert.IsFalse(app.Groups.GroupIsNotCreated());
 
             }
 
             GroupData group = new GroupData("qwerty");
             group.Header = "qwerty1";
             group.Footer = "qwerty2";
-            //Assert.IsFalse(app.Groups.IsElementPresent(By.Name("selected[]")));
             
-            app.Groups.Remove(1, group);
+            app.Groups.Remove(group);
 
             
            

@@ -17,13 +17,13 @@ namespace WebAddressbookTests
         {
             if (app.Groups.GroupIsNotCreated())
             {
-                Assert.IsFalse(app.Groups.IsElementPresent(By.Name("selected[]")));
+                Assert.IsFalse(app.Groups.GroupIsNotCreated());
 
             }
             GroupData group = new GroupData("mod");
             group.Header = "modify1";
             group.Footer = "modify1";
-            app.Groups.Modify(1, group);
+            app.Groups.Modify(group);
         }
 
     }

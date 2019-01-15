@@ -18,7 +18,7 @@ namespace WebAddressbookTests
         {
             if (app.Contact.ContactIsNotCreated())
             {
-                Assert.IsFalse(app.Contact.IsElementPresent(By.XPath("//td[1]/input[1]")));
+                Assert.IsFalse(app.Contact.ContactIsNotCreated());
             }
             
             ContactData contact = new ContactData("ContactModify");

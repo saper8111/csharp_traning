@@ -18,7 +18,7 @@ namespace WebAddressbookTests
         {
             if (app.Contact.ContactIsNotCreated())
             {
-                Assert.IsFalse(app.Contact.IsElementPresent(By.XPath("//td[1]/input[1]")));
+                Assert.IsFalse(app.Contact.ContactIsNotCreated());
 
             }
 
@@ -38,7 +38,7 @@ namespace WebAddressbookTests
             contact.Aday = "2";
             contact.Amonth = "November";
             contact.Ayear = "1111";
-            app.Contact.Remove(1, contact);
+            app.Contact.Remove(contact);
            
         }
 

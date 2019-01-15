@@ -28,16 +28,7 @@ namespace WebAddressbookTests
         public ContactHelper Modify( ContactData contact)
         {
                 manager.Navigation.OpenHomePage();
-            if (ContactIsNotCreated())
-            {
-                InitContactCreation();
-                FillContactForm(contact);
-                SubmitContactCreation();
-                ReturnToContactPage();
-
-            }
-
-            SelectContact(1);
+                SelectContact(1);
                 InitContactModification();
                 FillContactForm(contact);
                 SubmitContactModification();
@@ -58,22 +49,15 @@ namespace WebAddressbookTests
             return contacts;
         }
 
-        public ContactHelper Remove(int v, ContactData contact)
+        public ContactHelper Remove(ContactData contact)
         {
                 manager.Navigation.OpenHomePage();
-            if (ContactIsNotCreated())
-            {
-                InitContactCreation();
-                FillContactForm(contact);
-                SubmitContactCreation();
-                ReturnToContactPage();
-
-            }
-            
-                SelectContact(v);
+                SelectContact(1);
                 RemoveContact();
                 ReturnToContactPage();
                 //Logout();
+
+
             return this;
 
         }

@@ -17,6 +17,8 @@ namespace WebAddressbookTests
         {
         }
 
+        
+
         public GroupHelper Create(GroupData group)
         {
             manager.Navigation.GoToGroupsPage();
@@ -41,19 +43,10 @@ namespace WebAddressbookTests
             return groups;
         }
 
-        public GroupHelper Modify(int v, GroupData group)
+        public GroupHelper Modify(GroupData group)
         {
             manager.Navigation.GoToGroupsPage();
-            if (GroupIsNotCreated())
-            {
-                InitGroupCreation();
-                FillGroupForm(group);
-                SubmitGroupCreation();
-                ReturnToGroupsPage();
-
-            }
-
-            SelectGroup(v);
+            SelectGroup(1);
             InitGroupModification();
             FillGroupForm(group);
             SubmitGroupModification();
@@ -76,35 +69,21 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Remove(int v, GroupData group)
+        public GroupHelper Remove(GroupData group)
         {
             manager.Navigation.GoToGroupsPage();
-            if (GroupIsNotCreated())
-            {
-                InitGroupCreation();
-                FillGroupForm(group);
-                SubmitGroupCreation();
-                ReturnToGroupsPage();
-
-            }
-            
-                SelectGroup(v);
-                RemoveGroup();
-                ReturnToGroupsPage();
-                Logout();
-
-           
-            
-
-               
+            SelectGroup(1);
+            RemoveGroup();
+            ReturnToGroupsPage();
+            Logout();
             return this;
         }
-
 
         public bool GroupIsNotCreated()
         {
             return !IsElementPresent(By.Name("selected[]"));
         }
+
 
         public GroupHelper InitGroupCreation()
         {
