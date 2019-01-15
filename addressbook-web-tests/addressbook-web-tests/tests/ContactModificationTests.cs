@@ -37,7 +37,7 @@ namespace WebAddressbookTests
             contact.Aday = "2";
             contact.Amonth = "November";
             contact.Ayear = "1111";
-            app.Contact.Modify(1, contact);
+            app.Contact.Modify(contact);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Modify(int v, ContactData contact)
+        public ContactHelper Modify( ContactData contact)
         {
                 manager.Navigation.OpenHomePage();
             if (ContactIsNotCreated())
@@ -37,7 +37,7 @@ namespace WebAddressbookTests
 
             }
 
-            SelectContact(v);
+            SelectContact(1);
                 InitContactModification();
                 FillContactForm(contact);
                 SubmitContactModification();
