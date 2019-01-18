@@ -14,23 +14,37 @@ namespace WebAddressbookTests
     {
         [Test]
         public void GroupRemovalTest()
+
         {
+                app.Navigation.GoToGroupsPage();
 
             if (app.Groups.GroupIsNotCreated())
             {
-                Assert.IsFalse(app.Groups.GroupIsNotCreated());
-
+                
+                GroupData newgroup = new GroupData("new group");
+                newgroup.Header = "new group1";
+                newgroup.Footer = "new group2";
+                app.Groups.Create(newgroup);
+                
             }
 
-            GroupData group = new GroupData("qwerty");
-            group.Header = "qwerty1";
-            group.Footer = "qwerty2";
-            
-            app.Groups.Remove(group);
+               Assert.IsFalse(app.Groups.GroupIsNotCreated());
+               app.Groups.Remove();
+
+        }  
+               
+
+          
+           
+           
+
+
+           
 
             
            
-        }
+         
 
+        
     }
 }

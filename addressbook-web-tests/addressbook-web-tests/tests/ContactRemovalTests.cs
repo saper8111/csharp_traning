@@ -16,32 +16,34 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
+            app.Navigation.OpenHomePage();
+
             if (app.Contact.ContactIsNotCreated())
             {
-                Assert.IsFalse(app.Contact.ContactIsNotCreated());
+                ContactData newcontact = new ContactData("new contact");
+                newcontact.Middlename = "new contact";
+                newcontact.Lastname = "new contact";
+                newcontact.Nickname = "new contact";
+                newcontact.Address = "new contact";
+                newcontact.Home = "new contact";
+                newcontact.Mobile = "new contact";
+                newcontact.Work = "new contact";
+                newcontact.Fax = "new contact";
+                newcontact.Email = "new contact";
+                newcontact.Bday = "1";
+                newcontact.Bmonth = "April";
+                newcontact.Byear = "1900";
+                newcontact.Aday = "2";
+                newcontact.Amonth = "November";
+                newcontact.Ayear = "1111";
+                app.Contact.Create(newcontact);
 
             }
 
-            ContactData contact = new ContactData("1000");
-            contact.Middlename = "1000";
-            contact.Lastname = "dfdfdgf";
-            contact.Nickname = "eretgfgff";
-            contact.Address = "dsfdgfdg";
-            contact.Home = "dfdfdfggd";
-            contact.Mobile = "111111";
-            contact.Work = "4554546";
-            contact.Fax = "fdgfgfgfg";
-            contact.Email = "fdgfgfg";
-            contact.Bday = "1";
-            contact.Bmonth = "April";
-            contact.Byear = "1900";
-            contact.Aday = "2";
-            contact.Amonth = "November";
-            contact.Ayear = "1111";
-            app.Contact.Remove(contact);
+            Assert.IsFalse(app.Contact.ContactIsNotCreated());
+
+            app.Contact.Remove();
            
         }
-
-        
     }
 }

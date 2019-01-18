@@ -17,13 +17,11 @@ namespace WebAddressbookTests
         {
         }
 
-        
-
-        public GroupHelper Create(GroupData group)
+        public GroupHelper Create(GroupData newgroup)
         {
             manager.Navigation.GoToGroupsPage();
             InitGroupCreation();
-            FillGroupForm(group);
+            FillGroupForm(newgroup);
             SubmitGroupCreation();
             ReturnToGroupsPage();
             //Logout();
@@ -34,7 +32,6 @@ namespace WebAddressbookTests
         {
             List<GroupData> groups = new List<GroupData>();
             manager.Navigation.GoToGroupsPage();
-            ICollection<IWebElement>elements = driver.FindElements(By.CssSelector("span.group"));
             foreach (IWebElement element in elements)
             {
                 groups.Add(new GroupData(element.Text));
@@ -51,10 +48,17 @@ namespace WebAddressbookTests
             FillGroupForm(group);
             SubmitGroupModification();
             ReturnToGroupsPage();
-            Logout();
+            return this;
+        }
 
-            
-                return this;
+        public GroupHelper Remove()
+        {
+            manager.Navigation.GoToGroupsPage();
+            SelectGroup(1);
+            RemoveGroup();
+            ReturnToGroupsPage();
+            Logout();
+            return this;
         }
 
         public GroupHelper SubmitGroupModification()
@@ -69,22 +73,6 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper Remove(GroupData group)
-        {
-            manager.Navigation.GoToGroupsPage();
-            SelectGroup(1);
-            RemoveGroup();
-            ReturnToGroupsPage();
-            Logout();
-            return this;
-        }
-
-        public bool GroupIsNotCreated()
-        {
-            return !IsElementPresent(By.Name("selected[]"));
-        }
-
-
         public GroupHelper InitGroupCreation()
         {
             driver.FindElement(By.Name("new")).Click();
@@ -98,8 +86,6 @@ namespace WebAddressbookTests
             Type(By.Name("group_footer"), group.Footer);
             return this;
         }
-
-        
 
         public GroupHelper SubmitGroupCreation()
         {
@@ -131,6 +117,11 @@ namespace WebAddressbookTests
             return this;
         }
 
-        
+        public bool GroupIsNotCreated()
+        {
+            return !IsElementPresent(By.Name("selected[]"));
+        }
+
+
     }
 }

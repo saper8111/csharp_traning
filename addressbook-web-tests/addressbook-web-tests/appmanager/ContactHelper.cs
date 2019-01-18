@@ -10,31 +10,29 @@ namespace WebAddressbookTests
     {
 
         public ContactHelper(ApplicationManager manager)
-            : base(manager)
+                : base(manager)
         {
         }
 
-        public ContactHelper Create(ContactData contact)
+        public ContactHelper Create(ContactData newcontact)
         {
-            manager.Navigation.OpenHomePage();
-            InitContactCreation();
-            FillContactForm(contact);
-            SubmitContactCreation();
-            ReturnToContactPage();
-            //Logout();
-            return this;
+                manager.Navigation.OpenHomePage();
+                InitContactCreation();
+                FillContactForm(newcontact);
+                SubmitContactCreation();
+                ReturnToContactPage();
+                return this;
         }
 
-        public ContactHelper Modify( ContactData contact)
+        public ContactHelper Modify(ContactData modifycontact)
         {
                 manager.Navigation.OpenHomePage();
                 SelectContact(1);
                 InitContactModification();
-                FillContactForm(contact);
+                FillContactForm(modifycontact);
                 SubmitContactModification();
                 ReturnToContactPage();
-            //Logout();
-            return this;
+                return this;
         }
 
         public List<ContactData> GetContactList()
@@ -49,71 +47,64 @@ namespace WebAddressbookTests
             return contacts;
         }
 
-        public ContactHelper Remove(ContactData contact)
+        public ContactHelper Remove()
         {
                 manager.Navigation.OpenHomePage();
                 SelectContact(1);
                 RemoveContact();
                 ReturnToContactPage();
-                //Logout();
-
-
-            return this;
+                return this;
 
         }
 
         public bool ContactIsNotCreated()
         {
-           return !IsElementPresent(By.Name("selected[]"));
-            
+               return !IsElementPresent(By.Name("selected[]"));
         }
 
         public ContactHelper SubmitContactModification()
         {
-            driver.FindElement(By.XPath("//div[4]/form[1]/input[1]")).Click();
-            return this;
+              driver.FindElement(By.XPath("//div[4]/form[1]/input[1]")).Click();
+              return this;
         }
 
         public ContactHelper InitContactModification()
         {
-            driver.FindElement(By.XPath("//tr[@name='entry']//td[8]")).Click();
-
-            return this;
+              driver.FindElement(By.XPath("//tr[@name='entry']//td[8]")).Click();
+              return this;
         }
 
         public ContactHelper RemoveContact()
         {
-            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            Thread.Sleep(1000);
-            driver.SwitchTo().Alert().Accept();
-
-
-            return this;
+             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+             Thread.Sleep(1000);
+             driver.SwitchTo().Alert().Accept();
+             return this;
         }
 
         public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-            return this;
+             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+             return this;
         }
 
 
         public ContactHelper ReturnToContactPage()
         {
-            driver.FindElement(By.LinkText("home")).Click();
-            return this;
+             driver.FindElement(By.LinkText("home")).Click();
+             return this;
         }
 
         public ContactHelper SubmitContactCreation()
         {
-            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
-            return this;
+             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+             return this;
         }
 
         public ContactHelper InitContactCreation()
         {
-            driver.FindElement(By.LinkText("add new")).Click();
-            return this;
+             driver.FindElement(By.LinkText("add new")).Click();
+             return this;
         }
 
         public ContactHelper FillContactForm(ContactData contact)
@@ -143,8 +134,6 @@ namespace WebAddressbookTests
             Type(By.Name("ayear"), contact.Ayear);
             return this;
         }
-
-
 
         public ContactHelper Logout()
         {

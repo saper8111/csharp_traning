@@ -15,16 +15,24 @@ namespace WebAddressbookTests
         [Test]
         public void GroupModificationTest()
         {
+            app.Navigation.GoToGroupsPage();
+
             if (app.Groups.GroupIsNotCreated())
             {
-                Assert.IsFalse(app.Groups.GroupIsNotCreated());
+
+                GroupData newgroup = new GroupData("new group");
+                newgroup.Header = "new group1";
+                newgroup.Footer = "new group2";
+                app.Groups.Create(newgroup);
 
             }
-            GroupData group = new GroupData("mod");
-            group.Header = "modify1";
-            group.Footer = "modify1";
-            app.Groups.Modify(group);
-        }
 
+               Assert.IsFalse(app.Groups.GroupIsNotCreated());
+
+               GroupData modifygroup = new GroupData("modifygroup");
+               modifygroup.Header = "modifygroup";
+               modifygroup.Footer = "modifygroup";
+               app.Groups.Modify(modifygroup);
+        }
     }
 }
