@@ -28,17 +28,19 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public List<GroupData> GetGroupList()
-        {
-            List<GroupData> groups = new List<GroupData>();
-            manager.Navigation.GoToGroupsPage();
-            foreach (IWebElement element in elements)
-            {
-                groups.Add(new GroupData(element.Text));
-            }
+        //public List<GroupData> GetGroupList()
+        //{
+        //    List<GroupData> groups = new List<GroupData>();
+        //    manager.Navigation.GoToGroupsPage();
 
-            return groups;
-        }
+        //    ICollection<IWebElement>elements = driver.FindElements(By.CssSelector("span.group"));
+        //    foreach (IWebElement element in elements)
+        //    {
+        //        groups.Add(new GroupData(element.Text));
+        //    }
+
+        //    return groups;
+        //}
 
         public GroupHelper Modify(GroupData group)
         {

@@ -30,12 +30,12 @@ namespace WebAddressbookTests
             contact.Amonth = "November";
             contact.Ayear = "1111";
 
-            List<ContactData> oldContact = app.Contact.GetContactList();
+            //List<ContactData> oldContact = app.Contact.GetContactList();
 
-            app.Contact.Create(contact);
+            //app.Contact.Create(contact);
 
-            List<ContactData> newContact = app.Contact.GetContactList();
-            Assert.AreEqual(oldContact.Count + 1, newContact.Count);
+            //List<ContactData> newContact = app.Contact.GetContactList();
+            //Assert.AreEqual(oldContact.Count + 1, newContact.Count);
 
 
         }
@@ -62,12 +62,12 @@ namespace WebAddressbookTests
             contact.Amonth = "November";
             contact.Ayear = "1111";
 
-            List<ContactData> oldContact = app.Contact.GetContactList();
+            //List<ContactData> oldContact = app.Contact.GetContactList();
 
-            app.Contact.Create(contact);
+            //app.Contact.Create(contact);
 
-            List<ContactData> newContact = app.Contact.GetContactList();
-            Assert.AreEqual(oldContact.Count + 1, newContact.Count);
+            //List<ContactData> newContact = app.Contact.GetContactList();
+            //Assert.AreEqual(oldContact.Count + 1, newContact.Count);
         }
 
     }
