@@ -17,12 +17,16 @@ namespace WebAddressbookTests
             group.Header = "sss";
             group.Footer = "ddd";
 
-            //List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            //app.Groups.Create(group);
+            app.Groups.Create(group);
 
-            //List<GroupData> newGroups = app.Groups.GetGroupList();
-            //Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
 
 
@@ -34,12 +38,16 @@ namespace WebAddressbookTests
             group.Header = "";
             group.Footer = "";
 
-            //List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            //app.Groups.Create(group);
+            app.Groups.Create(group);
 
-            //List<GroupData> newGroups = app.Groups.GetGroupList();
-            //Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
 
 

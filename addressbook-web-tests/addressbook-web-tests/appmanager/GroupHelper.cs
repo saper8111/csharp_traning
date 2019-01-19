@@ -28,24 +28,24 @@ namespace WebAddressbookTests
             return this;
         }
 
-        //public List<GroupData> GetGroupList()
-        //{
-        //    List<GroupData> groups = new List<GroupData>();
-        //    manager.Navigation.GoToGroupsPage();
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navigation.GoToGroupsPage();
 
-        //    ICollection<IWebElement>elements = driver.FindElements(By.CssSelector("span.group"));
-        //    foreach (IWebElement element in elements)
-        //    {
-        //        groups.Add(new GroupData(element.Text));
-        //    }
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                groups.Add(new GroupData(element.Text));
+            }
 
-        //    return groups;
-        //}
+            return groups;
+        }
 
         public GroupHelper Modify(GroupData group)
         {
             manager.Navigation.GoToGroupsPage();
-            SelectGroup(1);
+            SelectGroup(0);
             InitGroupModification();
             FillGroupForm(group);
             SubmitGroupModification();
@@ -56,10 +56,10 @@ namespace WebAddressbookTests
         public GroupHelper Remove()
         {
             manager.Navigation.GoToGroupsPage();
-            SelectGroup(1);
+            SelectGroup(0);
             RemoveGroup();
             ReturnToGroupsPage();
-            Logout();
+            //Logout();
             return this;
         }
 
@@ -109,7 +109,7 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")).Click();
             return this;
         }
 

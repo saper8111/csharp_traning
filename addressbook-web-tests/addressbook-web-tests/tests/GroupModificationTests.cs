@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
+
 namespace WebAddressbookTests
 {
     [TestFixture]
@@ -16,6 +17,8 @@ namespace WebAddressbookTests
         public void GroupModificationTest()
         {
             app.Navigation.GoToGroupsPage();
+
+
 
             if (app.Groups.GroupIsNotCreated())
             {
@@ -32,7 +35,17 @@ namespace WebAddressbookTests
                GroupData modifygroup = new GroupData("modifygroup");
                modifygroup.Header = "modifygroup";
                modifygroup.Footer = "modifygroup";
+
+               List<GroupData> oldGroups = app.Groups.GetGroupList();
+
                app.Groups.Modify(modifygroup);
+
+               List<GroupData> newGroups = app.Groups.GetGroupList();
+               Assert.AreEqual(oldGroups.Count, newGroups.Count);
+               oldGroups[0].Name = modifygroup.Name;
+               oldGroups.Sort();
+               newGroups.Sort();
+               Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }
