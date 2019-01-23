@@ -1,4 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿
+     
+
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -16,95 +19,95 @@ namespace WebAddressbookTests
 
         public ContactHelper Create(ContactData newcontact)
         {
-                manager.Navigation.OpenHomePage();
-                InitContactCreation();
-                FillContactForm(newcontact);
-                SubmitContactCreation();
-                ReturnToContactPage();
-                return this;
+            manager.Navigation.OpenHomePage();
+            InitContactCreation();
+            FillContactForm(newcontact);
+            SubmitContactCreation();
+            ReturnToContactPage();
+            return this;
         }
 
-        public ContactHelper Modify(ContactData modifycontact)
+        public ContactHelper Modify(int p, ContactData modifycontact)
         {
-                manager.Navigation.OpenHomePage();
-                SelectContact(1);
-                InitContactModification();
-                FillContactForm(modifycontact);
-                SubmitContactModification();
-                ReturnToContactPage();
-                return this;
+            manager.Navigation.OpenHomePage();
+            SelectContact(p);
+            InitContactModification();
+            FillContactForm(modifycontact);
+            SubmitContactModification();
+            ReturnToContactPage();
+            return this;
         }
 
-        //public List<ContactData> GetContactList()
-        //{
-        //    List<ContactData> contacts = new List<ContactData>();
-        //    manager.Navigation.OpenHomePage();
-        //    ICollection<IWebElement>elements = driver.FindElements(By.XPath("//td[1]/input[1]"));
-        //    foreach (IWebElement element in elements)
-        //    {
-        //        contacts.Add(new ContactData(element.Text));
-        //    }
-        //    return contacts;
-        //}
-
-        public ContactHelper Remove()
+        public List<ContactData> GetContactList()
         {
-                manager.Navigation.OpenHomePage();
-                SelectContact(1);
-                RemoveContact();
-                ReturnToContactPage();
-                return this;
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigation.OpenHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath(".//td[3]"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text));
+            }
+            return contacts;
+        }
+
+        public ContactHelper Remove(int p)
+        {
+            manager.Navigation.OpenHomePage();
+            SelectContact(p);
+            RemoveContact();
+            ReturnToContactPage();
+            return this;
 
         }
 
         public bool ContactIsNotCreated()
         {
-               return !IsElementPresent(By.Name("selected[]"));
+            return !IsElementPresent(By.Name("selected[]"));
         }
 
         public ContactHelper SubmitContactModification()
         {
-              driver.FindElement(By.XPath("//div[4]/form[1]/input[1]")).Click();
-              return this;
+            driver.FindElement(By.XPath("//div[4]/form[1]/input[1]")).Click();
+            return this;
         }
 
         public ContactHelper InitContactModification()
         {
-              driver.FindElement(By.XPath("//tr[@name='entry']//td[8]")).Click();
-              return this;
+            driver.FindElement(By.XPath("//tr[@name='entry']//td[8]")).Click();
+            return this;
         }
 
         public ContactHelper RemoveContact()
         {
-             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-             Thread.Sleep(1000);
-             driver.SwitchTo().Alert().Accept();
-             return this;
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            Thread.Sleep(1000);
+            driver.SwitchTo().Alert().Accept();
+            return this;
         }
 
         public ContactHelper SelectContact(int index)
         {
-             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-             return this;
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index +1) + "]")).Click();
+            return this;
         }
 
 
         public ContactHelper ReturnToContactPage()
         {
-             driver.FindElement(By.LinkText("home")).Click();
-             return this;
+            driver.FindElement(By.LinkText("home")).Click();
+            return this;
         }
 
         public ContactHelper SubmitContactCreation()
         {
-             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
-             return this;
+            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            return this;
         }
 
         public ContactHelper InitContactCreation()
         {
-             driver.FindElement(By.LinkText("add new")).Click();
-             return this;
+            driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
 
         public ContactHelper FillContactForm(ContactData contact)
@@ -141,6 +144,6 @@ namespace WebAddressbookTests
             return this;
         }
 
-        
+
     }
 }

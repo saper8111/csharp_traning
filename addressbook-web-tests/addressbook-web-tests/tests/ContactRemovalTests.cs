@@ -6,12 +6,16 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 namespace WebAddressbookTests
 {
     [TestFixture]
     public class ContactRemovalTests : AuthTestBase
     {
+
+
+
 
         [Test]
         public void ContactRemovalTest()
@@ -42,8 +46,25 @@ namespace WebAddressbookTests
 
             Assert.IsFalse(app.Contact.ContactIsNotCreated());
 
-            app.Contact.Remove();
+            List<ContactData> oldContact = app.Contact.GetContactList();
+
+            app.Contact.Remove(0);
+
+            List<ContactData> newContact = app.Contact.GetContactList();
+
+            oldContact.RemoveAt(0);
+            //oldContact.Sort();
+            //newContact.Sort();
+
+            Assert.AreEqual(oldContact, newContact);
+
+          
+            
+            
+          
            
-        }
+           
+
+         }
     }
 }

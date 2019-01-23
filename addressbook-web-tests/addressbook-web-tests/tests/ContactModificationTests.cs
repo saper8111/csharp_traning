@@ -6,6 +6,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 namespace WebAddressbookTests
 {
@@ -43,23 +44,34 @@ namespace WebAddressbookTests
 
             Assert.IsFalse(app.Contact.ContactIsNotCreated());
 
-            ContactData modifycontact = new ContactData("new modifycontact");
-            modifycontact.Middlename = "new modifycontact";
-            modifycontact.Lastname = "new modifycontact";
-            modifycontact.Nickname = "new modifycontact";
-            modifycontact.Address = "new modifycontact";
-            modifycontact.Home = "new modifycontact";
-            modifycontact.Mobile = "new modifycontact";
-            modifycontact.Work = "new modifycontact";
-            modifycontact.Fax = "new contact";
-            modifycontact.Email = "new contact";
-            modifycontact.Bday = "1";
-            modifycontact.Bmonth = "April";
-            modifycontact.Byear = "1900";
-            modifycontact.Aday = "2";
-            modifycontact.Amonth = "November";
-            modifycontact.Ayear = "1111";
-            app.Contact.Modify(modifycontact);
+            ContactData Modifycontact = new ContactData("new modifycontact");
+            Modifycontact.Middlename = "new modifycontact";
+            Modifycontact.Lastname = "new modifycontact";
+            Modifycontact.Nickname = "new modifycontact";
+            Modifycontact.Address = "new modifycontact";
+            Modifycontact.Home = "new modifycontact";
+            Modifycontact.Mobile = "new modifycontact";
+            Modifycontact.Work = "new modifycontact";
+            Modifycontact.Fax = "new contact";
+            Modifycontact.Email = "new contact";
+            Modifycontact.Bday = "1";
+            Modifycontact.Bmonth = "April";
+            Modifycontact.Byear = "1900";
+            Modifycontact.Aday = "2";
+            Modifycontact.Amonth = "November";
+            Modifycontact.Ayear = "1111";
+
+            List<ContactData> oldContact = app.Contact.GetContactList();
+
+            app.Contact.Modify(0, Modifycontact);
+
+            List<ContactData> newContact = app.Contact.GetContactList();
+            oldContact[0].Firstname = Modifycontact.Firstname;
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
+
+
         }
     }
 }

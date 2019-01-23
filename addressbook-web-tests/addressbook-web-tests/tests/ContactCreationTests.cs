@@ -13,8 +13,8 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTests()
         {
-            ContactData contact = new ContactData("789");
-            contact.Middlename = "433";
+            ContactData contact = new ContactData("12123");
+            contact.Middlename = "00002";
             contact.Lastname = "456";
             contact.Nickname = "87878";
             contact.Address = "ghhjhhnbm";
@@ -30,12 +30,18 @@ namespace WebAddressbookTests
             contact.Amonth = "November";
             contact.Ayear = "1111";
 
-            //List<ContactData> oldContact = app.Contact.GetContactList();
+            List<ContactData> oldContact = app.Contact.GetContactList();
 
-            //app.Contact.Create(contact);
+            app.Contact.Create(contact);
+        
 
-            //List<ContactData> newContact = app.Contact.GetContactList();
-            //Assert.AreEqual(oldContact.Count + 1, newContact.Count);
+
+            List<ContactData> newContact = app.Contact.GetContactList();
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
+            
 
 
         }
@@ -62,12 +68,16 @@ namespace WebAddressbookTests
             contact.Amonth = "November";
             contact.Ayear = "1111";
 
-            //List<ContactData> oldContact = app.Contact.GetContactList();
+            List<ContactData> oldContact = app.Contact.GetContactList();
 
-            //app.Contact.Create(contact);
+            app.Contact.Create(contact);
 
-            //List<ContactData> newContact = app.Contact.GetContactList();
-            //Assert.AreEqual(oldContact.Count + 1, newContact.Count);
+            List<ContactData> newContact = app.Contact.GetContactList();
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
+
         }
 
     }

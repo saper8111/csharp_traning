@@ -40,7 +40,9 @@ namespace WebAddressbookTests
                List<GroupData> newGroups = app.Groups.GetGroupList();
 
                oldGroups.RemoveAt(0);
-               Assert.AreEqual(oldGroups, newGroups);
+               oldGroups.Sort();
+               oldGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
 
         }  
                
