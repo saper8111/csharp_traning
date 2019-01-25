@@ -46,9 +46,11 @@ namespace WebAddressbookTests
             {
                 contactCach = new List<ContactData>();
                 manager.Navigation.OpenHomePage();
-                ICollection<IWebElement> elements = driver.FindElements(By.XPath(".//td[3]"));
+                ICollection<IWebElement> elements = driver.FindElements(By.XPath(".//tr"));
                 foreach (IWebElement element in elements)
                 {
+                    element.FindElements(By.XPath(".//td[3]"));
+                    element.FindElements(By.XPath(".//td[2]"));
                     contactCach.Add(new ContactData(element.Text));
                 }
             }

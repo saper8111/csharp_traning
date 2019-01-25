@@ -25,17 +25,13 @@ namespace WebAddressbookTests
         private string aday = "";
         private string amonth = "";
         private string ayear = "";
-        private IWebElement webElement;
 
         public ContactData(string firstname)
         {
             this.firstname = firstname;
         }
 
-        public ContactData(IWebElement webElement)
-        {
-            this.webElement = webElement;
-        }
+        
 
         public bool Equals(ContactData other)
         {
@@ -47,7 +43,7 @@ namespace WebAddressbookTests
             {
                 return true;
             }
-            return Firstname  == other.Firstname;
+            return Firstname + Lastname  == other.Firstname + other.Lastname;
         }
 
         public override int GetHashCode()
@@ -57,7 +53,7 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return " Firstname = " + Firstname + "Lastname = " + Lastname;
+            return " Firstname = " + Firstname + "Lastname =" + Lastname;
         }
 
         public int CompareTo(ContactData other)
@@ -66,11 +62,8 @@ namespace WebAddressbookTests
             {
                 return 1;
             }
-            if(Firstname.CompareTo(other.Firstname) ==0)
-            {
-                return Lastname.CompareTo(other.Lastname);
-            }
-            return Firstname.CompareTo(other.Firstname);
+            
+            return Firstname.CompareTo(other.Firstname) + Lastname.CompareTo(other.Lastname);
         }
 
         public string Firstname

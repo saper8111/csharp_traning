@@ -53,8 +53,8 @@ namespace WebAddressbookTests
             List<ContactData> newContact = app.Contact.GetContactList();
 
             oldContact.RemoveAt(0);
-            //oldContact.Sort();
-            //newContact.Sort();
+            oldContact.Sort();
+            newContact.Sort();
 
             Assert.AreEqual(oldContact, newContact);
 
