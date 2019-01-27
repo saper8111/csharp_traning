@@ -45,15 +45,15 @@ namespace WebAddressbookTests
             Assert.IsFalse(app.Contact.ContactIsNotCreated());
 
             ContactData Modifycontact = new ContactData("new modifycontact");
-            Modifycontact.Middlename = "new modifycontact";
-            Modifycontact.Lastname = "new modifycontact";
-            Modifycontact.Nickname = "new modifycontact";
-            Modifycontact.Address = "new modifycontact";
-            Modifycontact.Home = "new modifycontact";
-            Modifycontact.Mobile = "new modifycontact";
-            Modifycontact.Work = "new modifycontact";
-            Modifycontact.Fax = "new contact";
-            Modifycontact.Email = "new contact";
+            Modifycontact.Middlename = "";
+            Modifycontact.Lastname = "";
+            Modifycontact.Nickname = "";
+            Modifycontact.Address = "";
+            Modifycontact.Home = "";
+            Modifycontact.Mobile = "";
+            Modifycontact.Work = "";
+            Modifycontact.Fax = "";
+            Modifycontact.Email = "";
             Modifycontact.Bday = "1";
             Modifycontact.Bmonth = "April";
             Modifycontact.Byear = "1900";

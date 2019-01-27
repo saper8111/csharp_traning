@@ -37,8 +37,8 @@ namespace WebAddressbookTests
             {
                 groupCache = new List<GroupData>();
                 manager.Navigation.GoToGroupsPage();
-                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
-                foreach (IWebElement element in elements)
+                ICollection<IWebElement> s = driver.FindElements(By.CssSelector("span.group"));
+                foreach (IWebElement element in s)
                 {
                     groupCache.Add(new GroupData(element.Text));
                 }

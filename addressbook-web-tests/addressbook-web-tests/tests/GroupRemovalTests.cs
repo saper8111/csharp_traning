@@ -24,8 +24,8 @@ namespace WebAddressbookTests
                 if (app.Groups.GroupIsNotCreated())
                 {
                 
-                GroupData newgroup = new GroupData("new group");
-                newgroup.Header = "new group1";
+                GroupData newgroup = new GroupData("123");
+                newgroup.Header = "123";
                 newgroup.Footer = "new group2";
                 app.Groups.Create(newgroup);
                 

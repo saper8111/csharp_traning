@@ -1,7 +1,4 @@
-﻿
-     
-
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -38,25 +35,8 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private List<ContactData> contactCach = null;
-
-        public List<ContactData> GetContactList()
-        {
-            if(contactCach == null)
-            {
-                contactCach = new List<ContactData>();
-                manager.Navigation.OpenHomePage();
-                ICollection<IWebElement> elements = driver.FindElements(By.XPath(".//tr"));
-                foreach (IWebElement element in elements)
-                {
-                    element.FindElements(By.XPath(".//td[3]"));
-                    element.FindElements(By.XPath(".//td[2]"));
-                    contactCach.Add(new ContactData(element.Text));
-                }
-            }
-            
-            return new List<ContactData>(contactCach);
-        }
+        
+        
 
         public ContactHelper Remove(int p)
         {
@@ -68,6 +48,23 @@ namespace WebAddressbookTests
 
         }
 
+        internal List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigation.OpenHomePage();
+            ICollection<IWebElement>elements = driver.FindElements(By.CssSelector("tr[name = 'entry']"));
+            foreach (IWebElement element in elements)
+            {
+                element.FindElement(By.XPath(".//td[3]"));
+
+                element.FindElement(By.XPath(".//td[2]"));
+                
+                ContactData contact = new ContactData(element.Text);
+                contacts.Add(contact);
+            }
+            return contacts;
+        }
+
         public bool ContactIsNotCreated()
         {
             return !IsElementPresent(By.Name("selected[]"));
@@ -76,7 +73,6 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.XPath("//div[4]/form[1]/input[1]")).Click();
-            contactCach = null;
             return this;
         }
 
@@ -89,7 +85,6 @@ namespace WebAddressbookTests
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            contactCach = null;
             Thread.Sleep(1000);
             driver.SwitchTo().Alert().Accept();
             return this;
@@ -111,7 +106,6 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
-            contactCach = null;
             return this;
         }
 
