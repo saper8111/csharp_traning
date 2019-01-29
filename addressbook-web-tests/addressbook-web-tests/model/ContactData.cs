@@ -61,20 +61,14 @@ namespace WebAddressbookTests
             {
                 return 1;
             }
-            if(Object.ReferenceEquals(this, null))
+            if(Lastname.CompareTo(other.Lastname) == 0)
             {
-                return -1;
+                if(Firstname.CompareTo(other.Firstname) == 0)
+                {
+                    return Firstname.CompareTo(other.Firstname);
+                }
             }
-            if (Object.ReferenceEquals(this, other))
-            {
-                return 0;
-
-            }
-            if (Lastname.CompareTo(other.Lastname) == 0)
-            {
-                return 0;
-            }
-            return Firstname.CompareTo(other.Firstname);
+            return Lastname.CompareTo(other.Lastname);
         }
 
        
