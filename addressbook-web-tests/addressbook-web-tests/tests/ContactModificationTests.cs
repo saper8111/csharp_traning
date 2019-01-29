@@ -44,16 +44,16 @@ namespace WebAddressbookTests
 
             Assert.IsFalse(app.Contact.ContactIsNotCreated());
 
-            ContactData Modifycontact = new ContactData("new modifycontact");
-            Modifycontact.Middlename = "";
-            Modifycontact.Lastname = "";
-            Modifycontact.Nickname = "";
-            Modifycontact.Address = "";
-            Modifycontact.Home = "";
-            Modifycontact.Mobile = "";
-            Modifycontact.Work = "";
-            Modifycontact.Fax = "";
-            Modifycontact.Email = "";
+            ContactData Modifycontact = new ContactData("qqq");
+            Modifycontact.Middlename = "1";
+            Modifycontact.Lastname = "2";
+            Modifycontact.Nickname = "3";
+            Modifycontact.Address = "55555";
+            Modifycontact.Home = "5444";
+            Modifycontact.Mobile = "4";
+            Modifycontact.Work = "fr";
+            Modifycontact.Fax = "new modifycontact";
+            Modifycontact.Email = "new modifycontact";
             Modifycontact.Bday = "1";
             Modifycontact.Bmonth = "April";
             Modifycontact.Byear = "1900";
@@ -67,6 +67,7 @@ namespace WebAddressbookTests
 
             List<ContactData> newContact = app.Contact.GetContactList();
             oldContact[0].Firstname = Modifycontact.Firstname;
+            oldContact[0].Lastname = Modifycontact.Lastname;
             oldContact.Sort();
             newContact.Sort();
             Assert.AreEqual(oldContact, newContact);
