@@ -48,21 +48,18 @@ namespace WebAddressbookTests
 
         }
 
-
-
-        public List<ContactData> GetContactList()
+        internal List<ContactData> GetContactList()
         {
             List<ContactData> contacts = new List<ContactData>();
             manager.Navigation.OpenHomePage();
             ICollection<IWebElement>elements = driver.FindElements(By.CssSelector("tr[name = 'entry']"));
             foreach (IWebElement element in elements)
             {
+                element.FindElement(By.XPath(".//td[3]"));
+
+                element.FindElement(By.XPath(".//td[2]"));
                 
                 ContactData contact = new ContactData(element.Text);
-                element.FindElements(By.XPath(".//td"));
-                contact.Firstname = element.FindElement(By.XPath(".//td[3]")).Text;
-                contact.Lastname = element.FindElement(By.XPath(".//td[2]")).Text;
-
                 contacts.Add(contact);
             }
             return contacts;

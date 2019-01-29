@@ -48,14 +48,12 @@ namespace WebAddressbookTests
 
             List<ContactData> oldContact = app.Contact.GetContactList();
 
-
             app.Contact.Remove(0);
             
             
             
 
             List<ContactData> newContact = app.Contact.GetContactList();
-
             oldContact.RemoveAt(0);
             oldContact.Sort();
             newContact.Sort();

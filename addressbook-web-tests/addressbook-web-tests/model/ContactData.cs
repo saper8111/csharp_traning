@@ -65,17 +65,28 @@ namespace WebAddressbookTests
             {
                 return -1;
             }
-            if(Object.ReferenceEquals(this, other))
+            if (Object.ReferenceEquals(this, other))
             {
-                return -1;
+                return 0;
+
             }
-        
             if (Lastname.CompareTo(other.Lastname) == 0)
             {
-                return 1;
+                return 0;
             }
             return Firstname.CompareTo(other.Firstname);
         }
+
+       
+
+        
+
+        
+
+        
+            
+            
+        
 
         public string Firstname
         {
