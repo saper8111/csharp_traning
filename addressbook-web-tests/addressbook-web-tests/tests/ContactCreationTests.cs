@@ -13,16 +13,16 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTests()
         {
-            ContactData contact = new ContactData("12123");
-            contact.Middlename = "1234";
-            contact.Lastname = "234355";
-            contact.Nickname = "";
-            contact.Address = "";
-            contact.Home = "";
-            contact.Mobile = "";
-            contact.Work = "";
+            ContactData contact = new ContactData("test");
+            contact.Middlename = "test 1";
+            contact.Lastname = "test 2";
+            contact.Nickname = "test 3";
+            contact.Address = "1-ya Nasha street, app.2";
+            contact.Home = "+7(977)111-11-11";
+            contact.Mobile = "+7(012)010-54-77";
+            contact.Work = "+7(234)567-89-01";
             contact.Fax = "";
-            contact.Email = "";
+            contact.Email = "123@gmail.com";
             contact.Bday = "1";
             contact.Bmonth = "April";
             contact.Byear = "1900";

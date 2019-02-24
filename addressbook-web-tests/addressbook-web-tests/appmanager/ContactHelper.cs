@@ -24,6 +24,7 @@ namespace WebAddressbookTests
             return this;
         }
 
+
         public ContactHelper Modify(int p, ContactData modifycontact)
         {
             manager.Navigation.OpenHomePage();
@@ -35,8 +36,6 @@ namespace WebAddressbookTests
             return this;
         }
 
-        
-        
 
         public ContactHelper Remove(int p)
         {
@@ -158,6 +157,57 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactData GetContactInformationFromTable(int index)
+        {
+            manager.Navigation.OpenHomePage();
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"));
+            string lastname = cells[1].Text;
+            string firstname = cells[2].Text;
+            string address = cells[3].Text;
+            string allPhones = cells[5].Text;
 
+            return new ContactData(firstname)
+            {
+                Address = address,
+                AllPhones = allPhones
+
+            };
+
+
+
+        }
+
+        public ContactData GetContactInformationFromEditForm(int index)
+        {
+            manager.Navigation.OpenHomePage();
+            InitContactModification(0);
+            string firstname = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastname = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string home = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobile = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string work = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            return new ContactData(firstname)
+            {
+                Address = address,
+                Home = home,
+                Mobile = mobile,
+                Work = work
+
+            };
+
+            
+
+        }
+
+        public void  InitContactModification(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[7]
+                .FindElement(By.TagName("a")).Click();
+        }
     }
 }
